@@ -16,4 +16,14 @@ public class GraduateStudent extends Student {
         return this.supervisor;
     }
 
+    @Override
+    public boolean equals(GraduateStudent graduateStudent){
+        if(super.equals(graduateStudent)) {
+            if(this.supervisor.equals(graduateStudent.supervisor) && (this.researchTopic.equals(graduateStudent.researchTopic))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

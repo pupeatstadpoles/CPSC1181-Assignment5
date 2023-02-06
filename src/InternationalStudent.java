@@ -18,4 +18,14 @@ public class InternationalStudent extends Student{
     public double getTuitionFees() {
         return (this.getCredits()*internationalTuitionFee);
     }
+
+    @Override
+    public boolean equals(InternationalStudent internationalStudent){
+        if(super.equals(internationalStudent)) {
+            if(this.country.equals(internationalStudent.country)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

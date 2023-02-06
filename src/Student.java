@@ -117,4 +117,21 @@ public class Student {
         return tuitionFee * credits;
     }
 
+    @Override
+    public boolean equals(Student s) {
+        if (s == null) {
+            return false;
+        }
+        if (this.name.equals(s.name) && (this.address.equals(s.address))) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "[" + getClass().getName() + ", name: " + getName() + ", address: " + getAddress() +"]";
+    }
+
+
 }

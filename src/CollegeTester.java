@@ -199,7 +199,7 @@ public class CollegeTester {
     public static void addStudentCollege(College college) {
         String sName = "", sAddress = "", sCountry = "", sResearchTopic = "", sSupervisorName = "";
         Scanner input = new Scanner(System.in);
-        int studentTypeSelection;
+        int studentTypeSelection = 0;
         boolean valid = false;
 
         System.out.println("");
@@ -230,11 +230,23 @@ public class CollegeTester {
                 break;
             case (2):
                 System.out.println("Which country is this International Student from?");
-                System.out.println("");
+                System.out.println();
                 sCountry = input.nextLine();
                 System.out.println("Adding an International Student with the name " + sName + " and address " + sAddress + " from the country " + sCountry);
                 InternationalStudent newInternationalStudent = new InternationalStudent(sName, sAddress, sCountry);
                 college.addStudent(newInternationalStudent);
+                break;
+            case (3):
+                System.out.println("What is this Graduate Student's research topic?");
+                System.out.println();
+                sResearchTopic = input.nextLine();
+                System.out.println("What is their Supervisor's name?");
+                System.out.println();
+                sSupervisorName = input.nextLine();
+                System.out.println("Adding a Graduate Student with the name " + sName + " and address " + sAddress + ". Their research topic is " + sResearchTopic + " and their supervisor is " + sSupervisorName);
+                break;
+            default:
+                System.out.println("Invalid selection! You can only choose a command from [1] to [3].\nTerminating procedure: Add student.");
         }
     }
 
