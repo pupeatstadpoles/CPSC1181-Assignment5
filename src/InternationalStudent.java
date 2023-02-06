@@ -7,4 +7,15 @@ public class InternationalStudent extends Student{
         super(name,address);
         this.country = country;
     }
+
+    public String getCountry(){
+        return this.country;
+    }
+
+
+
+    @Override
+    public double getTuitionFees() {
+        return (this.getCredits()*internationalTuitionFee);
+    }
 }

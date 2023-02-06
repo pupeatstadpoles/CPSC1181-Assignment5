@@ -8,4 +8,12 @@ public class GraduateStudent extends Student {
         supervisor = supervisorName;
     }
 
+    public String getResearchTopic(){
+        return this.researchTopic;
+    }
+
+    public String getSupervisor(){
+        return this.supervisor;
+    }
+
 }

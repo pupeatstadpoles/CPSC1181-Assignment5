@@ -108,7 +108,12 @@ public class Student {
         return id;
     }
 
+    public double getCredits() {
+        return credits;
+    }
+
     public double getTuitionFees() {
+
         return tuitionFee * credits;
     }
 
