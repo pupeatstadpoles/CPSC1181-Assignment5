@@ -20,12 +20,15 @@ public class InternationalStudent extends Student{
     }
 
     @Override
-    public boolean equals(InternationalStudent internationalStudent){
+    public boolean equals(Object internationalStudent){
         if(super.equals(internationalStudent)) {
-            if(this.country.equals(internationalStudent.country)) {
-                return true;
-            }
+            InternationalStudent iStudent = (InternationalStudent) internationalStudent;
+            return equals(iStudent);
         }
         return false;
+    }
+
+    public boolean equals(InternationalStudent internationalStudent) {
+        return ((this.country.equals(internationalStudent.getCountry())));
     }
 }

@@ -17,13 +17,16 @@ public class GraduateStudent extends Student {
     }
 
     @Override
-    public boolean equals(GraduateStudent graduateStudent){
+    public boolean equals(Object graduateStudent){
         if(super.equals(graduateStudent)) {
-            if(this.supervisor.equals(graduateStudent.supervisor) && (this.researchTopic.equals(graduateStudent.researchTopic))) {
-                return true;
+            GraduateStudent grad = (GraduateStudent) graduateStudent;
+            return equals(grad);
             }
-        }
         return false;
     }
 
+
+    public boolean equals(GraduateStudent graduateStudent) {
+        return ((this.supervisor.equals(graduateStudent.getSupervisor())) && (this.researchTopic.equals(graduateStudent.getResearchTopic())));
+    }
 }
