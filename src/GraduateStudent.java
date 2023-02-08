@@ -2,6 +2,13 @@ public class GraduateStudent extends Student {
     private String researchTopic;
     private String supervisor;
 
+    /**
+     * Public constructor
+     * @param name
+     * @param address
+     * @param topic
+     * @param supervisorName
+     */
     public GraduateStudent(String name, String address, String topic, String supervisorName) {
         super(name, address);
         researchTopic = topic;
@@ -28,5 +35,10 @@ public class GraduateStudent extends Student {
 
     public boolean equals(GraduateStudent graduateStudent) {
         return ((this.supervisor.equals(graduateStudent.getSupervisor())) && (this.researchTopic.equals(graduateStudent.getResearchTopic())));
+    }
+
+    @Override
+    public String toString(){
+        return super.toString() + "[ Research Topic: " + researchTopic + ", Supervisor: " + supervisor + "]";
     }
 }

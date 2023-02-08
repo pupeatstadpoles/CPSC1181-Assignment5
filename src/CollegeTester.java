@@ -26,9 +26,17 @@ public class CollegeTester {
         s2.addCourse(3,4);
         squart.addStudent(s2);
 
+        InternationalStudent s3 = new InternationalStudent("Sammy Spongebob", "YVR Airport", "Philippines");
+        s3.addCourse(3.7, 3);
+        s3.addCourse(3, 3);
+        s3.addCourse(4.3, 3);
+        squart.addStudent(s3);
+
+
+
 
         do {
-            System.out.println("\nRead the following menu of commands and enter in the number of the command you want to execute.\n\n1. Add a new student to the college.\n2. Lookup a student in the college using their student number.\n3. Deleting a student from the college using their student number. \n4. Add the grade points and credits for a course to a certain student \n5. Get a student's login ID. \n6. Find which student has the highest GPA. \n7. Get the student's tuition fees.\n8. Terminate program.");
+            System.out.println("\nRead the following menu of commands and enter in the number of the command you want to execute.\n\n1. Add a new student to the college.\n2. Lookup a student in the college using their student number.\n3. Deleting a student from the college using their student number. \n4. Add the grade points and credits for a course to a certain student \n5. Get a student's login ID. \n6. Find which student has the highest GPA. \n7. Get the student's tuition fees.\n8. Print out the list of students.\n9. Terminate program.");
             System.out.println();
 
             try {
@@ -37,7 +45,7 @@ public class CollegeTester {
             catch (InputMismatchException e1) { //if the input is not an int...................
                 e1.printStackTrace();
             }
-            finally {
+
                 switch (command) {
                     case (1): //Adding new student to college's arraylist
                         addStudentCollege(squart);
@@ -61,13 +69,17 @@ public class CollegeTester {
                     case (7):
                         getFees(input, squart);
                         break;
-                    case (8) :
+                    case (8):
+                        System.out.println(squart);
+                        break;
+                    case (9) :
                         restart = false;
+                        System.out.println("Bye!");
                         break;
                     default:
                         throw new InputMismatchException("Invalid command. Must enter a number from 1-7.");
                 }
-            }
+
 
         } while (restart);
     }
@@ -89,6 +101,65 @@ public class CollegeTester {
         return false;
     }
 
+    /**
+     * Method to add a Student to an existing College.
+     * @param college is an arraylist of Students.
+     */
+    public static void addStudentCollege(College college) {
+        String sName = "", sAddress = "", sCountry = "", sResearchTopic = "", sSupervisorName = "";
+        Scanner input = new Scanner(System.in);
+        int studentTypeSelection = 0;
+        boolean valid = false;
+
+        System.out.println("");
+        System.out.println("Please enter the name of the student you want to add in the format [Firstname Lastname]");
+        System.out.println("");
+        sName = input.nextLine();
+        sName = sName.trim();
+        valid = validStudentName(sName);
+        if (valid) {
+            System.out.println("Please enter the address of the student you want to add to the college.");
+            sAddress = input.nextLine();
+            try {
+                System.out.println("What type of student do you want to add? Please enter the corresponding number:\n[1] Enter 1 for a regular student.\n[2] Enter 2 for an International Student\n[3] Enter 3 for a Graduate Student.");
+                System.out.println();
+                studentTypeSelection = input.nextInt();
+            }
+            catch (InputMismatchException e1) {
+                System.out.println("You can only enter a number from 1 to 3!\nTerminating procedure - no student added.\n\n");
+            }
+        }
+
+
+        switch (studentTypeSelection) {
+            case (1):
+                System.out.println("Adding a Student named " + sName + " with address " + sAddress);
+                Student newStudent = new Student(sName, sAddress);
+                college.addStudent(newStudent);
+                break;
+            case (2):
+                Scanner in = new Scanner(System.in);
+                System.out.println("Which country is this International Student from?");
+                System.out.println("");
+                sCountry = in.nextLine();
+                System.out.println("Adding an International Student with the name " + sName + " and address " + sAddress + " from the country " + sCountry);
+                InternationalStudent newInternationalStudent = new InternationalStudent(sName, sAddress, sCountry);
+                college.addStudent(newInternationalStudent);
+                break;
+            case (3):
+                Scanner in2 = new Scanner(System.in);
+                System.out.println("What is this Graduate Student's research topic?\n");
+                System.out.println(" ");
+                sResearchTopic = in2.nextLine();
+                System.out.println("What is their Supervisor's name?\n");
+                System.out.println(" ");
+                sSupervisorName = in2.nextLine();
+                System.out.println("Adding a Graduate Student with the name " + sName + " and address " + sAddress + ". Their research topic is " + sResearchTopic + " and their supervisor is " + sSupervisorName);
+                break;
+            default:
+                System.out.println("Invalid selection! You can only choose a command from [1] to [3].\nTerminating procedure: Add student.");
+        }
+    }
 
     /**
      * Method to validate integer passed in as a valid student number of the college.
@@ -200,64 +271,14 @@ public class CollegeTester {
     }
 
 
+
+
+
     /**
-     * Method to add a Student to an existing College.
-     * @param college is an arraylist of Students.
+     * Get any student's tuition fees.
+     * @param input is a Scanner tied to the keyboard
+     * @param college is the college being passed in
      */
-    public static void addStudentCollege(College college) {
-        String sName = "", sAddress = "", sCountry = "", sResearchTopic = "", sSupervisorName = "";
-        Scanner input = new Scanner(System.in);
-        int studentTypeSelection = 0;
-        boolean valid = false;
-
-        System.out.println("");
-        System.out.println("Please enter the name of the student you want to add in the format [Firstname Lastname]");
-        System.out.println("");
-        sName = input.nextLine();
-        sName = sName.trim();
-        valid = validStudentName(sName);
-        if (valid) {
-            System.out.println("Please enter the address of the student you want to add to the college.");
-            sAddress = input.nextLine();
-        }
-        try {
-            System.out.println("What type of student do you want to add? Please enter the corresponding number:\n[1] Enter 1 for a regular student.\n[2] Enter 2 for an International Student\n[3]Enter 3 for a Graduate Student.");
-            System.out.println("");
-            studentTypeSelection = input.nextInt();
-        }
-        catch (InputMismatchException e1) {
-            System.out.println("You can only enter a number from 1 to 3!\nTerminating procedure - no student added.\n\n");
-        }
-
-
-        switch (studentTypeSelection) {
-            case (1):
-                System.out.println("Adding a Student named " + sName + " with address " + sAddress);
-                Student newStudent = new Student(sName, sAddress);
-                college.addStudent(newStudent);
-                break;
-            case (2):
-                System.out.println("Which country is this International Student from?");
-                System.out.println();
-                sCountry = input.nextLine();
-                System.out.println("Adding an International Student with the name " + sName + " and address " + sAddress + " from the country " + sCountry);
-                InternationalStudent newInternationalStudent = new InternationalStudent(sName, sAddress, sCountry);
-                college.addStudent(newInternationalStudent);
-                break;
-            case (3):
-                System.out.println("What is this Graduate Student's research topic?");
-                System.out.println();
-                sResearchTopic = input.nextLine();
-                System.out.println("What is their Supervisor's name?");
-                System.out.println();
-                sSupervisorName = input.nextLine();
-                System.out.println("Adding a Graduate Student with the name " + sName + " and address " + sAddress + ". Their research topic is " + sResearchTopic + " and their supervisor is " + sSupervisorName);
-                break;
-            default:
-                System.out.println("Invalid selection! You can only choose a command from [1] to [3].\nTerminating procedure: Add student.");
-        }
-    }
-
     public static void getFees(Scanner input, College college){
         int sNumber = 0;
         Student s;

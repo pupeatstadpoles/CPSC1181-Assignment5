@@ -17,6 +17,12 @@ public class Student {
     private static int nextStudentNum = 10000;
     private int studentNum = 0;
 
+
+    /**
+     * Public constructor
+     * @param name
+     * @param address
+     */
     public Student(String name, String address) {
         this.name = name.trim();
         this.address = address.trim();
@@ -113,14 +119,30 @@ public class Student {
         return id;
     }
 
+
+    /**
+     * Getter method for total credits
+     * @return credits as double
+     */
     public double getCredits() {
         return credits;
     }
 
+
+    /**
+     * Getter method for tuition fees based on total credits taken.
+     * @return tuition fees as double.
+     */
     public double getTuitionFees() {
-        return tuitionFee * credits;
+        return (double) Math.round((tuitionFee * credits) * 100) / 100;
     }
 
+
+    /**
+     * Checks if object is a Student, then checks if name and address are the same.
+     * @param s Object being passed through, may not be a Student object
+     * @return true if they are the same Student
+     */
     @Override
     public boolean equals(Object s) {
         if (s == null) {
@@ -141,7 +163,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return "[" + getClass().getName() + ", name: " + getName() + ", address: " + getAddress() + "]";
+        return "\n[" + getClass().getName() + ", name: " + getName() + ", address: " + getAddress() + ", student number: " + getStudentNum() + "]";
     }
 
 

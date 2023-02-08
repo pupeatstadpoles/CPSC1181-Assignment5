@@ -41,15 +41,17 @@ public class College {
 
     /**
      * Method to retrieve a Student from listStudents using their unique student number as a reference
-     * @param number is the student number for referring against
+     * @param number
+     * @return the Student object if found, otherwise return null.
      */
     public Student lookupWithNumber(int number) {
         String result = "No such student";
         for(Student s: this.listStudents) {
-            if(s.getStudentNum() == number)
+            if(s.getStudentNum() == number) {
                 result = s.toString();
                 System.out.println(result);
                 return s;
+            }
         }
         System.out.println(result);
         return null;
@@ -59,14 +61,15 @@ public class College {
     /**
      * Method to retrieve Student object from listStudents using their unique student number as a reference point
      * @param number is the student number used to find the Student
-     * @return a Student object, student, if found. Otherwise return null.
+     * @return a Student object, student, if found. Otherwise, return null.
      */
     public Student getStudent(int number) {
         Student student = null;
         for(Student s: this.listStudents) {
-            if(s.getStudentNum() == number)
+            if(s.getStudentNum() == number) {
                 student = s;
                 return student;
+            }
         }
         System.out.println("No student found.");
         return student;
@@ -109,6 +112,10 @@ public class College {
         } return highestGPAKid;
     }
 
+    /**
+     * Return College students as String
+     * @return ArrayList of students as string
+     */
     @Override
     public String toString() {
         return "College " + listStudents.toString();
