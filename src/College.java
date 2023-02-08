@@ -43,15 +43,16 @@ public class College {
      * Method to retrieve a Student from listStudents using their unique student number as a reference
      * @param number is the student number for referring against
      */
-    public void lookupWithNumber(int number) {
+    public Student lookupWithNumber(int number) {
         String result = "No such student";
         for(Student s: this.listStudents) {
             if(s.getStudentNum() == number)
                 result = s.toString();
                 System.out.println(result);
-                return;
+                return s;
         }
         System.out.println(result);
+        return null;
     }
 
 

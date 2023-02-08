@@ -28,39 +28,47 @@ public class CollegeTester {
 
 
         do {
-            System.out.println("\nRead the following menu of commands and enter in the number of the command you want to execute.\n\n1. Add a new student to the college.\n2. Lookup a student in the college using their student number.\n3. Deleting a student from the college using their student number. \n4. Add the grade points and credits for a course to a certain student \n5. Get a student's login ID. \n6. Find which student has the highest GPA. \n7. Terminate program.");
-            System.out.println("");
+            System.out.println("\nRead the following menu of commands and enter in the number of the command you want to execute.\n\n1. Add a new student to the college.\n2. Lookup a student in the college using their student number.\n3. Deleting a student from the college using their student number. \n4. Add the grade points and credits for a course to a certain student \n5. Get a student's login ID. \n6. Find which student has the highest GPA. \n7. Get the student's tuition fees.\n8. Terminate program.");
+            System.out.println();
+
             try {
                 command = input.nextInt();
-            } catch (InputMismatchException exception) { //if the input is not an int...................
-                exception.printStackTrace();
             }
-            switch (command) {
-                case (1): //Adding new student to college's arraylist
-                    addStudentCollege(squart);
-                    break;
-                case (2): //Looking up a student from college's arraylist
-                    lookup(input, squart);
-                    break;
-                case (3): //Removing a student from college's arraylist
-                    removal(input, squart);
-                    break;
-                case (4): //Adding a course's grade points and credits to a student in the college
-                    addCourse(input, squart);
-                    break;
-                case (5): //Retrieving a student's loginID
-                    loginID(input, squart);
-                    break;
-                case (6): //Finding the student with the highest GPA in the college
-                    Student s = squart.highestGPA();
-                    System.out.println(s.toString());
-                    break;
-                case (7) :
-                    restart = false;
-                    break;
-                default:
-                    throw new InputMismatchException("Invalid command. Must enter a number from 1-7.");
+            catch (InputMismatchException e1) { //if the input is not an int...................
+                e1.printStackTrace();
             }
+            finally {
+                switch (command) {
+                    case (1): //Adding new student to college's arraylist
+                        addStudentCollege(squart);
+                        break;
+                    case (2): //Looking up a student from college's arraylist
+                        lookup(input, squart);
+                        break;
+                    case (3): //Removing a student from college's arraylist
+                        removal(input, squart);
+                        break;
+                    case (4): //Adding a course's grade points and credits to a student in the college
+                        addCourse(input, squart);
+                        break;
+                    case (5): //Retrieving a student's loginID
+                        loginID(input, squart);
+                        break;
+                    case (6): //Finding the student with the highest GPA in the college
+                        Student s = squart.highestGPA();
+                        System.out.println(s.toString());
+                        break;
+                    case (7):
+                        getFees(input, squart);
+                        break;
+                    case (8) :
+                        restart = false;
+                        break;
+                    default:
+                        throw new InputMismatchException("Invalid command. Must enter a number from 1-7.");
+                }
+            }
+
         } while (restart);
     }
 
@@ -248,6 +256,35 @@ public class CollegeTester {
             default:
                 System.out.println("Invalid selection! You can only choose a command from [1] to [3].\nTerminating procedure: Add student.");
         }
+    }
+
+    public static void getFees(Scanner input, College college){
+        int sNumber = 0;
+        Student s;
+        String studentType;
+        double fees = 0;
+
+        try {
+            System.out.println("What is the student's student number?");
+            System.out.println();
+            sNumber = input.nextInt();
+            if(validStudentNumber(sNumber, college)) {
+                s = college.lookupWithNumber(sNumber);
+                studentType = s.getClass().toString();
+                if (studentType.equals("InternationalStudent")) { //only InternationalStudent has a diff tuition fee
+                    InternationalStudent internationalStudent = (InternationalStudent) s;
+                    fees = internationalStudent.getTuitionFees();
+                    System.out.println(s.getName() + "'s fees are $" + fees);
+                } else {
+                    fees = s.getTuitionFees();
+                    System.out.println(s.getName() + "'s fees are $" + fees);
+                }
+            }
+        }
+        catch (InputMismatchException e2) {
+            System.out.println("Integers only please.");
+        }
+
     }
 
 
