@@ -27,15 +27,13 @@ public class GraduateStudent extends Student {
     public boolean equals(Object graduateStudent){
         if(super.equals(graduateStudent)) {
             GraduateStudent grad = (GraduateStudent) graduateStudent;
-            return equals(grad);
+            return ((this.supervisor.equals(grad.getSupervisor())) && (this.researchTopic.equals(grad.getResearchTopic())));
             }
         return false;
     }
 
 
-    public boolean equals(GraduateStudent graduateStudent) {
-        return ((this.supervisor.equals(graduateStudent.getSupervisor())) && (this.researchTopic.equals(graduateStudent.getResearchTopic())));
-    }
+
 
     @Override
     public String toString(){

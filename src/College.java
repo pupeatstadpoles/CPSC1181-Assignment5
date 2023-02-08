@@ -34,6 +34,7 @@ public class College {
             if(s.getStudentNum() == number) {
                 System.out.println("Removing " + s.getName());
                 listStudents.remove(s);
+                break;
             }
         }
     }

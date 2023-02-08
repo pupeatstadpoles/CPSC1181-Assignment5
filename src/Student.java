@@ -150,16 +150,14 @@ public class Student {
         }
         if (getClass() == s.getClass()) { //only if the classes are the same
             Student student = (Student) s;
-            return equals(s);
+            if(((this.name.equals(student.name)) && (this.address.equals(student.address)))) {
+                return true;
+            }
         }
 
         return false;
     }
 
-    public boolean equals(Student student) {
-        return ((this.name.equals(student.name)) && (this.address.equals(student.address)));
-
-    }
 
     @Override
     public String toString() {

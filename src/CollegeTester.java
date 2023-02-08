@@ -64,7 +64,7 @@ public class CollegeTester {
                         break;
                     case (6): //Finding the student with the highest GPA in the college
                         Student s = squart.highestGPA();
-                        System.out.println(s.toString());
+                        System.out.println(s.toString() + "\nGPA: " + s.calculateGPA());
                         break;
                     case (7):
                         getFees(input, squart);
@@ -155,6 +155,8 @@ public class CollegeTester {
                 System.out.println(" ");
                 sSupervisorName = in2.nextLine();
                 System.out.println("Adding a Graduate Student with the name " + sName + " and address " + sAddress + ". Their research topic is " + sResearchTopic + " and their supervisor is " + sSupervisorName);
+                GraduateStudent graduateStudent = new GraduateStudent(sName, sAddress, sResearchTopic, sSupervisorName);
+                college.addStudent(graduateStudent);
                 break;
             default:
                 System.out.println("Invalid selection! You can only choose a command from [1] to [3].\nTerminating procedure: Add student.");
@@ -169,7 +171,7 @@ public class CollegeTester {
      * @return true if number has 8 digits and is between 10000000 and the college's highestStudentNum, otherwise false.
      */
     public static boolean validStudentNumber(int number, College college) {
-        if ((number < 10000000) || (number > college.getHighestStudentNum())) {
+        if ((number < 10000) || (number > college.getHighestStudentNum())) {
             System.out.println("Invalid student number. Student not found.");
             return false;
         }

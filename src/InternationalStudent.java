@@ -45,19 +45,11 @@ public class InternationalStudent extends Student{
     public boolean equals(Object internationalStudent){
         if(super.equals(internationalStudent)) {
             InternationalStudent iStudent = (InternationalStudent) internationalStudent;
-            return equals(iStudent);
+            return ((this.country.equals(iStudent.getCountry())));
         }
         return false;
     }
 
-    /**
-     * Checks if the country is the same. Name and address should already be the same.
-     * @param internationalStudent an InternationalStudent passed in for checking
-     * @return true if country is the same.
-     */
-    public boolean equals(InternationalStudent internationalStudent) {
-        return ((this.country.equals(internationalStudent.getCountry())));
-    }
 
 
     /**
