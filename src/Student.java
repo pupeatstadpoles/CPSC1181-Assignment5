@@ -159,6 +159,10 @@ public class Student {
     }
 
 
+    /**
+     * toString override, returns the Class name, the Student's name, their address and their student number
+     * @return
+     */
     @Override
     public String toString() {
         return "\n[" + getClass().getName() + ", name: " + getName() + ", address: " + getAddress() + ", student number: " + getStudentNum() + "]";
