@@ -4,10 +4,10 @@ public class GraduateStudent extends Student {
 
     /**
      * Public constructor
-     * @param name
-     * @param address
-     * @param topic
-     * @param supervisorName
+     * @param name is the name of the student
+     * @param address is their address
+     * @param topic is their research topic
+     * @param supervisorName is their supervisor's name
      */
     public GraduateStudent(String name, String address, String topic, String supervisorName) {
         super(name, address);
@@ -34,6 +34,8 @@ public class GraduateStudent extends Student {
     }
 
 
+
+
     /**
      * Checks if the Object passed in is the same GraduateStudent
      * @param graduateStudent Object being passed through, may not be a Student object
@@ -47,6 +49,8 @@ public class GraduateStudent extends Student {
             }
         return false;
     }
+
+
 
 
     /**
